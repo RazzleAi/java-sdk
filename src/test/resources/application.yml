@@ -6,3 +6,8 @@ razzle:
    api-key: f8907f653de9bed36394caa8591ca49f
    requires-auth: false
 
+logging:
+ level:
+  root: DEBUG
+
+
