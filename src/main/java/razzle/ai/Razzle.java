@@ -10,7 +10,7 @@ import razzle.ai.api.ServerRequestType;
 import razzle.ai.api.SyncAppPayload;
 import razzle.ai.context.RazzleActionHandlersContainer;
 import razzle.ai.ws.MessageHandler;
-import razzle.ai.ws.WSClientContainer;
+import razzle.ai.ws.WebSocketContainer;
 
 import java.time.Duration;
 
@@ -32,7 +32,7 @@ public class Razzle {
 
     private final RazzleActionHandlersContainer actionHandlersContainer;
 
-    private WSClientContainer clientContainer;
+    private static WebSocketContainer clientContainer;
 
 
 
@@ -40,7 +40,7 @@ public class Razzle {
     public void init() {
         validateConfiguration();
 
-        clientContainer = new WSClientContainer(razzleConfig, messageHandler);
+        clientContainer = new WebSocketContainer(razzleConfig, messageHandler);
         clientContainer.start();
 
         await()
@@ -74,6 +74,9 @@ public class Razzle {
     }
 
 
+    public static WebSocketContainer client() {
+        return clientContainer;
+    }
 
 
 }

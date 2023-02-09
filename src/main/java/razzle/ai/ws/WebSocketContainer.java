@@ -10,7 +10,7 @@ import razzle.ai.util.JSONUtil;
  * created by julian on 09/02/2023
  */
 @Slf4j
-public class WSClientContainer {
+public class WebSocketContainer {
 
     private int retryCount;
 
@@ -22,16 +22,16 @@ public class WSClientContainer {
 
     private final MessageHandler messageHandler;
 
-    private final WSClient client;
+    private final RazzleWebSocketClient client;
 
 
-    public WSClientContainer(RazzleConfig razzleConfig, MessageHandler messageHandler) {
+    public WebSocketContainer(RazzleConfig razzleConfig, MessageHandler messageHandler) {
         initializeReconnectionParameters();
 
         this.razzleConfig = razzleConfig;
         this.messageHandler = messageHandler;
 
-        this.client = new WSClient(razzleConfig, messageHandler);
+        this.client = new RazzleWebSocketClient(razzleConfig, messageHandler);
     }
 
 

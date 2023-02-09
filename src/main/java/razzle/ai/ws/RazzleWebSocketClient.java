@@ -13,7 +13,7 @@ import java.nio.ByteBuffer;
  * created by julian on 09/02/2023
  */
 @Slf4j
-public class WSClient extends WebSocketClient {
+public class RazzleWebSocketClient extends WebSocketClient {
 
 
     private static final String SERVER_URI = "ws://localhost:3333/agent";
@@ -22,7 +22,7 @@ public class WSClient extends WebSocketClient {
     private MessageHandler messageHandler;
 
 
-    public WSClient(RazzleConfig config, MessageHandler messageHandler) {
+    public RazzleWebSocketClient(RazzleConfig config, MessageHandler messageHandler) {
         super(
             URI.create(SERVER_URI), config.defaultHeadersMap()
         );
