@@ -1,9 +1,12 @@
-package razzle.ai.java;
+package razzle.ai.java.config;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
+import razzle.ai.java.RazzleConstants;
+
+import java.util.Map;
 
 /**
  * created by julian on 09/02/2023
@@ -23,6 +26,16 @@ public class RazzleConfig {
 
 
     private boolean requiresAuth;
+
+
+
+    public Map<String, String> defaultHeadersMap() {
+        return Map.of(
+            RazzleConstants.Headers.APP_ID, getAppId(),
+            RazzleConstants.Headers.API_KEY, getApiKey()
+        );
+    }
+
 
 
 }

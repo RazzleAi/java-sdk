@@ -1,4 +1,4 @@
-package razzle.ai.java;
+package razzle.ai.java.api;
 
 import lombok.Data;
 
