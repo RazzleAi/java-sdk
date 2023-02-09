@@ -1,0 +1,8 @@
+
+razzle:
+ ai:
+  config:
+   app-id: razzle-app-id
+   api-key: 28shsniu289-98h92kjs92-37998akn
+   requires-auth: false
+

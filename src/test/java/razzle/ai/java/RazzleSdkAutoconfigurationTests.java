@@ -1,0 +1,17 @@
+package razzle.ai.java;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest(
+	classes = {
+		RazzleAutoConfiguration.class,
+	}
+)
+class RazzleSdkAutoconfigurationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
