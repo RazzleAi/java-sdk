@@ -11,7 +11,7 @@ import razzle.ai.util.JSONUtil;
 interface TextMessageHandler {
 
 
-    ServerRequest<?> handleTextMessage(String message);
+    ServerRequest<?> handleTextMessage(String message) throws Exception;
 
 
     default boolean canHandleMessage(ServerMessage<?> message) {
