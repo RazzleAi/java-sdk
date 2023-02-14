@@ -2,8 +2,8 @@
 razzle:
  ai:
   config:
-   app-id: razzle-account-manager
-   api-key: f8907f653de9bed36394caa8591ca49f
+   app-id: d13f16f42fd54344cd7b07def2247d00
+   api-key: c16d4f6e526965b6869591ebcb7a14af8abb6f6e5ad24bc997d7afc5d793b9cd
    requires-auth: false
 
 logging:

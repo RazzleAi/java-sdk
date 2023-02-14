@@ -12,7 +12,7 @@ import java.util.Map;
 public class ServerMessageData<T> {
 
 
-    private Map<String, String> headers;
+    private Map<String, Object> headers;
 
 
     private T payload;
