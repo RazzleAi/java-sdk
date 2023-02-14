@@ -7,6 +7,7 @@ import razzle.ai.api.ActionPlanWithDetails;
 import razzle.ai.api.ServerMessage;
 import razzle.ai.api.ServerMessageType;
 import razzle.ai.api.ServerRequest;
+import razzle.ai.context.RazzleActionHandlersContainer;
 import razzle.ai.util.JSONUtil;
 
 /**
@@ -18,6 +19,8 @@ import razzle.ai.util.JSONUtil;
 public class CallFunctionHandler implements TextMessageHandler {
 
 
+    private final RazzleActionHandlersContainer handlersContainer;
+
 
     @Override
     public ServerRequest<?> handleTextMessage(String message) throws Exception {
@@ -27,6 +30,11 @@ public class CallFunctionHandler implements TextMessageHandler {
         var data = JSONUtil.asObjectOfClass(
             messageObject.getData().getPayload(), ActionPlanWithDetails.class
         );
+        var handlerOptional = handlersContainer.getHandler(data.getActionName());
+        if (handlerOptional.isEmpty()) {
+            throw new IllegalArgumentException("No handler found for action: " + data.getActionName());
+        }
+
         return null;
     }
 
