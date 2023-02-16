@@ -23,26 +23,3 @@ public class ActionPlanWithDetails {
 
 }
 
-@Data
-class ActionPlanArgsString {
-
-    private String name;
-
-    private String value;
-
-    private String type;
-
-}
-
-
-@Data
-class ActionPlanArgsPlanWithDetails {
-
-    private String name;
-
-    private ActionPlanWithDetails value;
-
-    private String type;
-
-}
-
