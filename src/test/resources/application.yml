@@ -2,8 +2,8 @@
 razzle:
  ai:
   config:
-   app-id: d13f16f42fd54344cd7b07def2247d00
-   api-key: c16d4f6e526965b6869591ebcb7a14af8abb6f6e5ad24bc997d7afc5d793b9cd
+   app-id: e15254a62357d2795838cdfb1f37778a
+   api-key: 6eecc98d1bc08e1af64e1c11c80e83047e781700830e6f70e1b68b8567b64b83
    requires-auth: false
 
 logging:

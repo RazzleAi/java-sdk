@@ -14,11 +14,22 @@ public class TestComponent {
 
     @Action(
         name = "testAction",
-        description = "test razzle action"
+        description = "test a razzle action"
     )
-    public String testingActions(CallDetails callDetails, @ActionParam String name) {
+    public String testingActions(@ActionParam String name, CallDetails callDetails) {
+        return "Hello " + name;
+    }
+
+
+    @Action(
+        name = "testAction2",
+        description = "test a razzle action 2"
+    )
+    public String testingActions2(@ActionParam String name, @ActionParam String email, CallDetails callDetails) {
         return "Hello " + name;
     }
 
 
 }
+
+

@@ -54,6 +54,7 @@ public class CallFunctionHandler implements TextMessageHandler {
         System.arraycopy(methodParamArray, 0, actionParams, 1, methodParamArray.length);
 
         var response = handler.getMethod().invoke(handler.getBean(), actionParams);
+        log.info("Response: {}", response);
 
         return null;
     }

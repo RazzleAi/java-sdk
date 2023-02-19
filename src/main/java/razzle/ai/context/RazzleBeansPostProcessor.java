@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import razzle.ai.ActionHandler;
 import razzle.ai.ActionHandlerParameter;
+import razzle.ai.RazzleConstants;
 import razzle.ai.annotation.Action;
 import razzle.ai.annotation.ActionParam;
 
@@ -68,8 +69,28 @@ public class RazzleBeansPostProcessor implements BeanPostProcessor {
                 var stealth = action.stealth();
 
                 var methodParameters = method.getParameters();
+
+                // validate last method parameter is CallDetails
+                if (methodParameters.length > 0) {
+                    var lastParam = methodParameters[methodParameters.length - 1];
+                    if (!lastParam.getType().getName().equals(RazzleConstants.CALL_DETAILS_CLASS)) {
+                        // validate last param has ActionParam annotation
+                        var annotation = lastParam.getAnnotation(ActionParam.class);
+                        if (annotation == null) {
+                            throw new RuntimeException(
+                                String.format(
+                                    "Last method parameter should be a CallDetails %s or " +
+                                        "have an @ActionParam annotation",
+                                    RazzleConstants.CALL_DETAILS_CLASS
+                                )
+                            );
+                        }
+                    }
+                }
+
                 var parameters = new ArrayList<ActionHandlerParameter>();
-                for (Parameter parameter: methodParameters) {
+                for (var i = 0; i < methodParameters.length - 1; i++) {
+                    var parameter = methodParameters[i];
                     var annotation = parameter.getAnnotation(ActionParam.class);
                     if (annotation != null) {
                         var paramName = annotation.name();
@@ -77,6 +98,14 @@ public class RazzleBeansPostProcessor implements BeanPostProcessor {
 
                         paramName = StringUtils.hasText(paramName) ? paramName : parameter.getName();
                         parameters.add(new ActionHandlerParameter(paramName, paramType));
+                    }
+                    else {
+                        if (i !=  methodParameters.length - 1) {
+                            throw new RuntimeException (
+                                "The only parameter allowed not to have an @ActionParam annotation " +
+                                    "is the last parameter which should be a CallDetails"
+                            );
+                        }
                     }
                 }
 
