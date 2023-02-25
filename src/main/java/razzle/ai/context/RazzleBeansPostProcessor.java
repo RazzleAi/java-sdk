@@ -96,8 +96,22 @@ public class RazzleBeansPostProcessor implements BeanPostProcessor {
                         var paramName = annotation.name();
                         var paramType = parameter.getType().getName();
 
+                        if (!ActionParamTypeMapping.isSupportedParamType(paramType)) {
+                            throw new RuntimeException(
+                                String.format(
+                                    "Unsupported parameter type: %s. Supported types are: %s",
+                                    paramType,
+                                    ActionParamTypeMapping.getSupportedParamTypes()
+                                )
+                            );
+                        }
+
                         paramName = StringUtils.hasText(paramName) ? paramName : parameter.getName();
-                        parameters.add(new ActionHandlerParameter(paramName, paramType));
+                        parameters.add(
+                            new ActionHandlerParameter(
+                                paramName, ActionParamTypeMapping.getKeyForParamType(paramType)
+                            )
+                        );
                     }
                     else {
                         if (i !=  methodParameters.length - 1) {

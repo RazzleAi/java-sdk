@@ -2,6 +2,7 @@ package razzle.ai.ws;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import razzle.ai.Razzle;
 import razzle.ai.api.ServerMessage;
 import razzle.ai.exception.ReceiverException;
 import razzle.ai.util.JSONUtil;
@@ -38,7 +39,10 @@ public class MessageHandlerImpl implements MessageHandler {
                 throw new IllegalArgumentException("No handler found for message: " + message);
             }
 
-            selectedHandler.handleTextMessage(message);
+            var serverRequest = selectedHandler.handleTextMessage(message);
+            if (serverRequest != null) {
+                Razzle.client().send(serverRequest);
+            }
         }
         catch (Throwable e) {
             throw new ReceiverException("Error while handling message: " + message, e);

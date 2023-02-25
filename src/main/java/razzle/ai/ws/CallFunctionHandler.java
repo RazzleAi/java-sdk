@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import razzle.ai.api.*;
+import razzle.ai.api.widget.RazzleResponse;
 import razzle.ai.context.RazzleActionHandlersContainer;
 import razzle.ai.util.JSONUtil;
 
@@ -11,7 +12,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 /**
- * created by julian on 12/02/2023
+ * created by Julian Duru on 12/02/2023
  */
 @Slf4j
 @Component
@@ -50,13 +51,21 @@ public class CallFunctionHandler implements TextMessageHandler {
 
         var methodParamArray = methodParams.toArray(new String[]{});
         var actionParams = new Object[methodParamArray.length + 1];
-        actionParams[0] = callDetails;
-        System.arraycopy(methodParamArray, 0, actionParams, 1, methodParamArray.length);
+        System.arraycopy(methodParamArray, 0, actionParams, 0, methodParamArray.length);
+        actionParams[actionParams.length - 1] = callDetails;
 
         var response = handler.getMethod().invoke(handler.getBean(), actionParams);
         log.info("Response: {}", response);
 
-        return null;
+        if (!(response instanceof RazzleResponse razzleResponse)) {
+            throw new IllegalStateException("Response must be of type RazzleResponse");
+        }
+
+        razzleResponse.setClientId(headers.get("clientId").toString());
+
+        return new ServerRequest<RazzleResponse>(ServerRequestType.FuncResponse)
+            .addObjectHeaders(headers)
+            .setPayload(razzleResponse);
     }
 
 

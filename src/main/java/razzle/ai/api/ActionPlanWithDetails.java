@@ -21,5 +21,7 @@ public class ActionPlanWithDetails {
 
     private ActionPlanArgsString[] args;
 
+    private Boolean isError;
+
 }
 
