@@ -18,7 +18,7 @@ public class RazzleTextProps {
     private String text;
 
 
-    private WidgetPadding padding;
+    private WidgetPadding padding = WidgetPadding.DEFAULT;
 
 
     private RazzleTextSize textSize;

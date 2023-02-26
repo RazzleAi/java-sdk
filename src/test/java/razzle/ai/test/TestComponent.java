@@ -4,10 +4,7 @@ import org.springframework.stereotype.Component;
 import razzle.ai.annotation.ActionParam;
 import razzle.ai.annotation.Action;
 import razzle.ai.api.CallDetails;
-import razzle.ai.api.widget.RazzleResponse;
-import razzle.ai.api.widget.RazzleText;
-import razzle.ai.api.widget.RazzleTextProps;
-import razzle.ai.api.widget.RazzleWidget;
+import razzle.ai.api.widget.*;
 
 /**
  * created by julian on 09/02/2023
@@ -40,6 +37,7 @@ public class TestComponent {
             new RazzleText(
                 RazzleTextProps.builder()
                     .text("Hello " + name + " your email is " + email)
+                    .padding(WidgetPadding.DEFAULT)
                     .build()
             )
         );
