@@ -6,29 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * created by Julian Duru on 25/02/2023
+ * created by Julian Duru on 26/02/2023
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RazzleTextProps {
+public class RazzleLinkProps {
 
 
-    private String text;
-
-
-    private WidgetPadding padding = WidgetPadding.DEFAULT;
+    private IActionTrigger action;
 
 
     private RazzleTextSize textSize;
 
 
-    private String textColor;
-
-
-    private RazzleTextWeight textWeight;
-
-
 }
-

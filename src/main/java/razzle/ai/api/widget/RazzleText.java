@@ -8,15 +8,15 @@ import lombok.Getter;
 @Getter
 public class RazzleText extends RazzleWidget implements IRazzleText {
 
-    private String text;
+    private final String text;
 
-    private WidgetPadding padding;
+    private final WidgetPadding padding;
 
-    private RazzleTextSize textSize;
+    private final RazzleTextSize textSize;
 
-    private String textColor;
+    private final String textColor;
 
-    private RazzleTextWeight textWeight;
+    private final RazzleTextWeight textWeight;
 
 
     public RazzleText(RazzleTextProps props) {
