@@ -1,6 +1,7 @@
 package razzle.ai.api.widget;
 
 import lombok.Getter;
+import org.springframework.util.StringUtils;
 
 /**
  * created by Julian Duru on 26/02/2023
@@ -31,6 +32,13 @@ public class RazzleTableColumn extends RazzleWidget implements IRazzleTableColum
     @Override
     public IRazzleTableColumn toJSON() {
         return this;
+    }
+
+    @Override
+    protected void validate() throws IllegalStateException{
+        if (!StringUtils.hasText(header)) {
+            throw new IllegalStateException("RazzleTableColumn should have a valid header");
+        }
     }
 
 

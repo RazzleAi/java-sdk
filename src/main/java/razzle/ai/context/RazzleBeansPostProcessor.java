@@ -11,6 +11,7 @@ import razzle.ai.ActionHandlerParameter;
 import razzle.ai.RazzleConstants;
 import razzle.ai.annotation.Action;
 import razzle.ai.annotation.ActionParam;
+import razzle.ai.api.widget.RazzleResponse;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -67,6 +68,13 @@ public class RazzleBeansPostProcessor implements BeanPostProcessor {
                 var description = action.description();
                 var roles = action.roles();
                 var stealth = action.stealth();
+
+                var returnType = method.getReturnType();
+                if (returnType != RazzleResponse.class) {
+                    throw new RuntimeException(
+                        "Action method should return a RazzleResponse"
+                    );
+                }
 
                 var methodParameters = method.getParameters();
 

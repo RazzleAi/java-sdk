@@ -29,6 +29,7 @@ public class RazzleResponse {
 
 
     public static RazzleResponse of(RazzleWidget ui) {
+        ui.validate();
         return RazzleResponse.builder()
                 .ui(ui)
                 .build();

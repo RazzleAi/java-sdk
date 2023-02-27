@@ -53,15 +53,62 @@ public class TestComponent {
             new RazzleLink(
                 RazzleLinkProps.builder()
                     .action(
-                        new RazzleActionTrigger(
+                        RazzleActionTrigger.of(
                             IActionTrigger.Type.URL,
                             "http://localhost:8080/testAction?name=" + name,
-                            "Follow Link",
-                            null
+                            "Follow Link"
                         )
                     )
                     .textSize(RazzleTextSize.medium)
                     .build()
+            )
+        );
+    }
+
+
+    @Action(
+        name = "callListAction",
+        description = "call a razzle list action"
+    )
+    public RazzleResponse composeList() {
+        return RazzleResponse.of(
+            new RazzleList(
+                RazzleListProps.of(
+                    "Call List Action",
+
+                    RazzleListItemProps.builder()
+                        .text("Item 1")
+                        .onSelect(
+                            RazzleActionTrigger.of(
+                                IActionTrigger.Type.URL,
+                                "http://localhost:8080/testAction?name=Item 1",
+                                "Follow Link"
+                            )
+                        )
+                        .build(),
+
+                    RazzleListItemProps.builder()
+                        .text("Item 2")
+                        .onSelect(
+                            RazzleActionTrigger.of(
+                                IActionTrigger.Type.URL,
+                                "http://localhost:8080/testAction?name=Item 2",
+                                "Follow Link"
+                            )
+                        )
+                        .build(),
+
+                    RazzleListItemProps.builder()
+                        .text("Item 3")
+                        .onSelect(
+                            RazzleActionTrigger.of(
+                                IActionTrigger.Type.URL,
+                                "http://localhost:8080/testAction?name=Item 3",
+                                "Follow Link"
+                            )
+                        )
+                        .build()
+                )
             )
         );
     }

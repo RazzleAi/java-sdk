@@ -1,6 +1,7 @@
 package razzle.ai.api.widget;
 
 import lombok.Getter;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -34,6 +35,14 @@ public class RazzleList extends RazzleWidget implements IRazzleList<RazzleListIt
     @Override
     public RazzleList toJSON() {
         return this;
+    }
+
+
+    @Override
+    protected void validate() throws IllegalStateException {
+        if (!StringUtils.hasText(title)) {
+            throw new IllegalStateException("RazzleList should have a valid title");
+        }
     }
 
 

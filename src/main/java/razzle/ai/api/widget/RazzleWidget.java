@@ -2,6 +2,7 @@ package razzle.ai.api.widget;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,11 +12,13 @@ import java.util.List;
 public abstract class RazzleWidget implements IRazzleWidget {
 
 
-    private List<RazzleWidget> children;
+    private List<RazzleWidget> children = new ArrayList<>();
 
     public abstract String getType();
 
     public abstract IRazzleWidget toJSON();
+
+    protected abstract void validate() throws IllegalStateException;
 
 
 }

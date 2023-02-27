@@ -1,6 +1,7 @@
 package razzle.ai.api.widget;
 
 import lombok.Getter;
+import org.springframework.util.StringUtils;
 
 /**
  * created by Julian Duru on 26/02/2023
@@ -28,6 +29,15 @@ public class RazzleLink extends RazzleWidget implements IRazzleLink {
     @Override
     public IRazzleLink toJSON() {
         return this;
+    }
+
+
+    @Override
+    protected void validate() throws IllegalStateException {
+        if (!(action.getType() != null && StringUtils.hasText(action.getLabel()) &&
+            StringUtils.hasText(action.getAction()))) {
+            throw new IllegalStateException("RazzleLink should have a valid label, action and type");
+        }
     }
 
 

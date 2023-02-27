@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class RazzleListItemProps {
 
     private IActionTrigger onSelect;
 
-    private List<IActionTrigger> actions;
+    private List<IActionTrigger> actions = new ArrayList<>();
 
 
 }
