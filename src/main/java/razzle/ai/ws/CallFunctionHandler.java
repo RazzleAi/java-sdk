@@ -48,11 +48,24 @@ public class CallFunctionHandler implements TextMessageHandler {
         var methodParams = argsList.stream().map(
             ActionPlanArgsString::getValue
         ).toList();
-
         var methodParamArray = methodParams.toArray(new String[]{});
-        var actionParams = new Object[methodParamArray.length + 1];
+
+        var handlerMethod = handler.getMethod();
+        var handlerMethodParams = handlerMethod.getParameters();
+        // check if handlerMethodParams has a CallDetails param
+        var hasCallDetailsParam = Arrays.stream(handlerMethodParams).anyMatch(
+            param -> param.getType() == CallDetails.class
+        );
+        Object[] actionParams;
+        if (hasCallDetailsParam) {
+            actionParams = new Object[methodParamArray.length + 1];
+            actionParams[actionParams.length - 1] = callDetails;
+        }
+        else {
+            actionParams = new Object[methodParamArray.length];
+        }
+
         System.arraycopy(methodParamArray, 0, actionParams, 0, methodParamArray.length);
-        actionParams[actionParams.length - 1] = callDetails;
 
         var response = handler.getMethod().invoke(handler.getBean(), actionParams);
         log.info("Response: {}", response);

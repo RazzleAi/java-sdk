@@ -44,6 +44,29 @@ public class TestComponent {
     }
 
 
+    @Action(
+        name = "callLinkAction",
+        description = "call a razzle link action"
+    )
+    public RazzleResponse composeLink(@ActionParam String name) {
+        return RazzleResponse.of(
+            new RazzleLink(
+                RazzleLinkProps.builder()
+                    .action(
+                        new RazzleActionTrigger(
+                            IActionTrigger.Type.URL,
+                            "http://localhost:8080/testAction?name=" + name,
+                            "Follow Link",
+                            null
+                        )
+                    )
+                    .textSize(RazzleTextSize.medium)
+                    .build()
+            )
+        );
+    }
+
+
 }
 
 

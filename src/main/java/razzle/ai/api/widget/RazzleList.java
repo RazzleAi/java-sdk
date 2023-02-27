@@ -8,7 +8,7 @@ import java.util.List;
  * created by Julian Duru on 26/02/2023
  */
 @Getter
-public class RazzleList extends RazzleWidget implements IRazzleList {
+public class RazzleList extends RazzleWidget implements IRazzleList<RazzleListItem> {
 
 
     private final String title;
@@ -32,7 +32,7 @@ public class RazzleList extends RazzleWidget implements IRazzleList {
 
 
     @Override
-    public IRazzleList toJSON() {
+    public RazzleList toJSON() {
         return this;
     }
 

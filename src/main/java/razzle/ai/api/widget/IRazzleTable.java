@@ -5,10 +5,10 @@ import java.util.List;
 /**
  * created by Julian Duru on 26/02/2023
  */
-public interface IRazzleTable extends IRazzleWidget {
+public interface IRazzleTable<T extends IRazzleTableColumn> extends IRazzleWidget {
 
 
-    List<IRazzleTableColumn> getColumns();
+    List<T> getColumns();
 
     String[][] getData();
 

@@ -71,6 +71,8 @@ public class RazzleBeansPostProcessor implements BeanPostProcessor {
                 var methodParameters = method.getParameters();
 
                 // validate last method parameter is CallDetails
+                boolean hasCallDetails = false;
+
                 if (methodParameters.length > 0) {
                     var lastParam = methodParameters[methodParameters.length - 1];
                     if (!lastParam.getType().getName().equals(RazzleConstants.CALL_DETAILS_CLASS)) {
@@ -86,10 +88,13 @@ public class RazzleBeansPostProcessor implements BeanPostProcessor {
                             );
                         }
                     }
+                    else {
+                        hasCallDetails = true;
+                    }
                 }
 
                 var parameters = new ArrayList<ActionHandlerParameter>();
-                for (var i = 0; i < methodParameters.length - 1; i++) {
+                for (var i = 0; i < (hasCallDetails ? methodParameters.length - 1 : methodParameters.length); i++) {
                     var parameter = methodParameters[i];
                     var annotation = parameter.getAnnotation(ActionParam.class);
                     if (annotation != null) {

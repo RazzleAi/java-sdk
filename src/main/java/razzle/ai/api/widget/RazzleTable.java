@@ -8,7 +8,7 @@ import java.util.List;
  * created by Julian Duru on 26/02/2023
  */
 @Getter
-public class RazzleTable extends RazzleWidget implements IRazzleTable {
+public class RazzleTable extends RazzleWidget implements IRazzleTable<RazzleTableColumn> {
 
 
     private final List<RazzleTableColumn> columns;
@@ -38,7 +38,7 @@ public class RazzleTable extends RazzleWidget implements IRazzleTable {
 
 
     @Override
-    public IRazzleTable toJSON() {
+    public RazzleTable toJSON() {
         return this;
     }
 
