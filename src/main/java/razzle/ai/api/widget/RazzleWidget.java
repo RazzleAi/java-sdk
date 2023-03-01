@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class RazzleWidget implements IRazzleWidget {
 
 
-    private List<RazzleWidget> children = new ArrayList<>();
+    protected List<RazzleWidget> children = new ArrayList<>();
 
     public abstract String getType();
 
