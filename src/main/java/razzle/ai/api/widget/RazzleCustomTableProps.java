@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,6 @@ import java.util.List;
  */
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
 public class RazzleCustomTableProps {
 
@@ -23,4 +23,24 @@ public class RazzleCustomTableProps {
     private List<RazzleCustomTableRowProps> rows;
 
 
+    public RazzleCustomTableProps(
+        String title,
+        List<RazzleCustomTableColumnProps> columns,
+        List<RazzleCustomTableRowProps> rows) {
+        this.title = title;
+        this.columns = columns;
+        this.rows = rows;
+    }
+
+
+    public RazzleCustomTableProps(
+        String title
+    ) {
+        this.title = title;
+        this.columns = new ArrayList<>();
+        this.rows = new ArrayList<>();
+    }
+
+
 }
+
