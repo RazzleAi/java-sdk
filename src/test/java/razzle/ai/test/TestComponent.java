@@ -6,6 +6,8 @@ import razzle.ai.annotation.Action;
 import razzle.ai.api.CallDetails;
 import razzle.ai.api.widget.*;
 
+import java.util.List;
+
 /**
  * created by julian on 09/02/2023
  */
@@ -109,6 +111,43 @@ public class TestComponent {
                         )
                         .build()
                 )
+            )
+        );
+    }
+
+
+    @Action(
+        name = "callTableAction",
+        description = "call a razzle table action"
+    )
+    public RazzleResponse composeTable() {
+        return RazzleResponse.of(
+            new RazzleTable(
+                RazzleTableProps.builder()
+                    .columns(
+                        List.of(
+                            RazzleTableColumnProps.builder()
+                                .header("Column 1")
+                                .build(),
+                            RazzleTableColumnProps.builder()
+                                .header("Column 2")
+                                .build(),
+                            RazzleTableColumnProps.builder()
+                                .header("Column 3")
+                                .build(),
+                            RazzleTableColumnProps.builder()
+                                .header("Column 4")
+                                .build()
+                        )
+                    )
+                    .data(
+                        new String[][]{
+                            { "Row1 - Sample", "Table", "Data", "Testing"},
+                            { "Row2 - Sample", "Table", "Data", "Testing"},
+                            { "Row3 - Sample", "Table", "Data", "Testing"},
+                        }
+                    )
+                    .build()
             )
         );
     }
