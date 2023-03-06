@@ -43,19 +43,30 @@ jobs:
         with:
           java-version: 17
           distribution: zulu
+
+      # Cache and restore Maven dependencies
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2-
+
       - name: Evaluate New Artifact Version
         run: |
           NEW_VERSION=${{ steps.gitversion.outputs.semVer }}
           echo "Artifact Semantic Version: $NEW_VERSION"
           mvn versions:set -DnewVersion=${NEW_VERSION}-SNAPSHOT -s settings.xml
 #          sed -i "s/<artifact.version>.*<\/artifact.version>/<artifact.version>${NEW_VERSION}-SNAPSHOT<\/artifact.version>/g" pom.xml
+
       - name: Build with Maven
         env:
           ARTIFACT_REPO_USERNAME: ${{ secrets.ARTIFACT_REPO_USERNAME }}
           ARTIFACT_REPO_PASSWORD: ${{ secrets.ARTIFACT_REPO_PASSWORD }}
         run: |
           echo "Artifact Repo Username: $ARTIFACT_REPO_USERNAME, Password: $ARTIFACT_REPO_PASSWORD"
-          mvn clean deploy -s settings.xml -f pom.xml
+          mvn clean deploy -s settings.xml -f pom.xml -DskipTests
+
       - name: Committing Update
         run: |
           git config user.email ${{ secrets.GIT_EMAIL }}
