@@ -20,7 +20,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <gpg.passphrase>Super445#</gpg.passphrase>
+                <gpg.passphrase>Superman445#</gpg.passphrase>
             </properties>
             <repositories>
                 <repository>
