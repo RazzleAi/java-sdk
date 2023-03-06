@@ -23,6 +23,10 @@ public class ServerRequest<T> {
     private ServerRequestData<T> data;
 
 
+    public ServerRequest(ServerRequestType event) {
+        this.event = event;
+    }
+
     public ServerRequest(ServerRequestType event, T payload) {
         this.event = event;
         this.data = new ServerRequestData<>(payload);
@@ -46,6 +50,19 @@ public class ServerRequest<T> {
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             data.addHeader(entry.getKey(), entry.getValue());
         }
+        return this;
+    }
+
+
+    public ServerRequest<T> addObjectHeaders(Map<String, Object> headers) {
+        if (data == null) {
+            data = new ServerRequestData<>();
+        }
+
+        for (Map.Entry<String, Object> entry : headers.entrySet()) {
+            data.addHeader(entry.getKey(), entry.getValue().toString());
+        }
+
         return this;
     }
 

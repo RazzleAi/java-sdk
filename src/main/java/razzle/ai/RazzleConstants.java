@@ -9,6 +9,9 @@ public interface RazzleConstants {
     String SDK_VERSION = "0.0.1";
 
 
+    String CALL_DETAILS_CLASS = "razzle.ai.api.CallDetails";
+
+
     interface Headers {
 
         String API_KEY = "api_key";

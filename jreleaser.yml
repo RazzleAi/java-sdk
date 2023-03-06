@@ -1,0 +1,24 @@
+# Generated with JReleaser 1.5.0 at 2023-03-05T21:13:04.181872833Z
+project:
+  name: razzle-java-sdk
+  version: 0.0.1-SNAPSHOT
+  description: Java SDK For Razzle
+  authors:
+    - Julian Duru
+  license: Apache-2.0
+  links:
+    homepage: https://www.getrazzle.com
+  java:
+    groupId: razzle.ai
+    version: 8
+  inceptionYear: 2023
+
+release:
+  github:
+    owner: durutheguru
+
+distributions:
+  app:
+    artifacts:
+      - path: target/java-sdk-${project.version}.jar
+

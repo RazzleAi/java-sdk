@@ -2,13 +2,8 @@ package razzle.ai.ws;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import razzle.ai.api.ServerMessage;
 import razzle.ai.api.ServerMessageType;
 import razzle.ai.api.ServerRequest;
-import razzle.ai.api.SyncAppResponsePayload;
-import razzle.ai.util.JSONUtil;
-
-import java.util.LinkedHashMap;
 
 /**
  * created by julian on 09/02/2023

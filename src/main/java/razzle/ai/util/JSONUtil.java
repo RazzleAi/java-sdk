@@ -56,4 +56,10 @@ public class JSONUtil {
     }
 
 
+    public static <T> T asObjectOfClass(Object object, Class<T> klass) throws IOException {
+        var jsonString = JSONUtil.asJsonString(object);
+        return JSONUtil.fromJsonString(jsonString, klass);
+    }
+
+
 }

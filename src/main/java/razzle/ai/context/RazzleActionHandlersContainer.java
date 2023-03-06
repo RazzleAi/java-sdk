@@ -7,6 +7,7 @@ import razzle.ai.ActionHandler;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * created by julian on 09/02/2023
@@ -32,6 +33,14 @@ public class RazzleActionHandlersContainer {
     public List<ActionHandler> getHandlers() {
         return handlers.values().stream().toList();
     }
+
+
+    public Optional<ActionHandler> getHandler(String name) {
+        return Optional.ofNullable(handlers.get(name));
+    }
+
+
+
 
 
 }
