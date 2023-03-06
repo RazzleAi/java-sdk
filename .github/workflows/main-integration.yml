@@ -1,10 +1,10 @@
-name: Master Branch CI
+name: Main Branch CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# events but only for the main branch
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -61,11 +61,11 @@ jobs:
           git config user.email ${{ secrets.GIT_EMAIL }}
           git config user.name ${{ secrets.GIT_USERNAME }}
           git add .
-          git commit -m "Master Integration Version - Commit" --allow-empty || true
+          git commit -m "Main Integration Version - Commit" --allow-empty || true
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          branch: master
+          branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
