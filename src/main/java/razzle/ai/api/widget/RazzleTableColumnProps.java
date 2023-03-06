@@ -24,4 +24,21 @@ public class RazzleTableColumnProps {
     private Number width;
 
 
+    public static RazzleTableColumnProps with(String id, String header, Number width) {
+        return RazzleTableColumnProps.builder()
+            .id(id)
+            .header(header)
+            .width(width)
+            .build();
+    }
+
+
+    public static RazzleTableColumnProps with(String id, String header) {
+        return RazzleTableColumnProps.builder()
+            .id(id)
+            .header(header)
+            .build();
+    }
+
+
 }

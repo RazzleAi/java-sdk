@@ -13,7 +13,6 @@ class RazzleSdkAutoconfigurationTests {
 
 	@Test
 	void contextLoads() throws Exception {
-		Thread.sleep(6000000);
 	}
 
 

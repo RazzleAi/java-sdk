@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * created by julian on 09/02/2023
  */
-@Component
+//@Component
 public class TestComponent {
 
 

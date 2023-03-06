@@ -45,7 +45,7 @@ public class RazzleTable extends RazzleWidget implements IRazzleTable<RazzleTabl
 
     @Override
     protected void validate() throws IllegalStateException {
-        if (data[0].length != columns.size()) {
+        if (data.length > 0 && data[0].length != columns.size()) {
             throw new IllegalStateException("RazzleTable column size should match data columns size");
         }
     }

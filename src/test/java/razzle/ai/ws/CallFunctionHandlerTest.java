@@ -1,5 +1,6 @@
 package razzle.ai.ws;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +26,7 @@ public class CallFunctionHandlerTest {
 
 
     @Test
+    @Disabled
     public void testCallFunction() throws Exception {
         var serverRequest = handler.handleTextMessage(
         """

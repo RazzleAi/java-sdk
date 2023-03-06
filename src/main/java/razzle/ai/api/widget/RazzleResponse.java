@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,9 +32,32 @@ public class RazzleResponse {
     public static RazzleResponse of(RazzleWidget ui) {
         ui.validate();
         return RazzleResponse.builder()
-                .ui(ui)
-                .build();
+            .ui(ui)
+            .build();
     }
+
+
+    public static RazzleResponse text(String text) {
+        return of(
+            new RazzleText(RazzleTextProps.builder()
+                .text(text)
+                .build()
+            )
+        );
+    }
+
+
+    public static RazzleResponse table(List<String> columns, String[][] data) {
+        return of(
+            new RazzleTable(
+                RazzleTableProps.builder()
+                    .columns(columns.stream().map(c -> RazzleTableColumnProps.with(c, c)).toList())
+                    .data(data)
+                    .build()
+            )
+        );
+    }
+
 
 
 }
