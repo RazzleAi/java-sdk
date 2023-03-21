@@ -12,7 +12,7 @@
 
     <groupId>ai.razzle</groupId>
     <artifactId>java-sdk</artifactId>
-    <version>0.2.14-41-SNAPSHOT</version>
+    <version>0.2.16-48-SNAPSHOT</version>
     <name>java-sdk</name>
     <description>Java SDK for Razzle AI</description>
 
