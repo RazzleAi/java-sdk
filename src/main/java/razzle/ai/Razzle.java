@@ -2,6 +2,8 @@ package razzle.ai;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.awaitility.core.ConditionTimeoutException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import razzle.ai.config.RazzleConfig;
@@ -19,6 +21,7 @@ import static org.awaitility.Awaitility.await;
 /**
  * created by julian on 09/02/2023
  */
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class Razzle {
@@ -43,13 +46,8 @@ public class Razzle {
         clientContainer = new WebSocketContainer(razzleConfig, messageHandler);
         clientContainer.start();
 
-        await()
-            .atMost(Duration.ofSeconds(60))
-            .until(() -> clientContainer.isConnected());
-
         registerActions();
     }
-
 
     private void validateConfiguration() throws IllegalStateException {
         if (razzleConfig.isRequiresAuth() && authenticationFunction == null) {

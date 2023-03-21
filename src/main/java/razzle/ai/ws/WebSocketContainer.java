@@ -1,10 +1,15 @@
 package razzle.ai.ws;
 
 import lombok.extern.slf4j.Slf4j;
+import org.awaitility.core.ConditionTimeoutException;
 import razzle.ai.api.ServerRequest;
 import razzle.ai.config.RazzleConfig;
 import razzle.ai.exception.SenderException;
 import razzle.ai.util.JSONUtil;
+
+import java.time.Duration;
+
+import static org.awaitility.Awaitility.await;
 
 /**
  * created by julian on 09/02/2023
@@ -44,6 +49,15 @@ public class WebSocketContainer {
         if (!isConnected()) {
             log.info("Starting Web Socket Client");
             this.client.connect();
+        }
+
+        try {
+            await()
+                .atMost(Duration.ofSeconds(60))
+                .until(client::isOpen);
+        }
+        catch (ConditionTimeoutException e) {
+            log.error("Error while connecting to Razzle Server. " + razzleConfig.getServerUrl(), e);
         }
     }
 
