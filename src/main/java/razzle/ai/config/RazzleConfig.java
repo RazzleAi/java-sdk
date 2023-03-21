@@ -25,6 +25,10 @@ public class RazzleConfig {
     private String appId;
 
 
+    @NotEmpty(message = "Server URL is required. Missing razzle.ai.config.server-url")
+    private String serverUrl;
+
+
     private boolean requiresAuth;
 
 
