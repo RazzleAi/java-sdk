@@ -16,7 +16,7 @@ import java.nio.ByteBuffer;
 public class RazzleWebSocketClient extends WebSocketClient {
 
 
-    private static final String SERVER_URI = "ws://localhost:3333/agent";
+    private static final String SERVER_URI = "";
 
 
     private MessageHandler messageHandler;
@@ -24,7 +24,7 @@ public class RazzleWebSocketClient extends WebSocketClient {
 
     public RazzleWebSocketClient(RazzleConfig config, MessageHandler messageHandler) {
         super(
-            URI.create(SERVER_URI), config.defaultHeadersMap()
+            URI.create(config.getServerUrl()), config.defaultHeadersMap()
         );
         this.messageHandler = messageHandler;
     }
