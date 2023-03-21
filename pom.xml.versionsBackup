@@ -10,9 +10,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>ai.razzle</groupId>
+    <groupId>io.github.RazzleAi</groupId>
     <artifactId>java-sdk</artifactId>
-    <version>0.2.14-41-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>java-sdk</name>
     <description>Java SDK for Razzle AI</description>
 
